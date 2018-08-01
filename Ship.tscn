@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Ship.gd" type="Script" id=1]
 [ext_resource path="res://Assets/ship.png" type="Texture" id=2]
 [ext_resource path="res://Libraries/ScreenWrap.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Libraries/ScreenWrap.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -15,7 +14,7 @@ extents = Vector2( 16, 16 )
 position = Vector2( 0, -1 )
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 2
 mode = 0
 mass = 1.0
 friction = 1.0
@@ -32,7 +31,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Applied Forces", "Linear", "Transform" ]
+_sections_unfolded = [ "Applied Forces", "Collision", "Linear", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
@@ -46,6 +45,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="ScreenWrap" parent="." index="2" instance=ExtResource( 3 )]
 
-script = ExtResource( 4 )
+[node name="ShootDelay" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.2
+one_shot = true
+autostart = false
 
 
