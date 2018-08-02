@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Ship.tscn" type="PackedScene" id=2]
+[ext_resource path="res://AsteroidLarge.tscn" type="PackedScene" id=3]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -31,5 +33,13 @@ shadow_atlas_quad_0 = 2
 shadow_atlas_quad_1 = 2
 shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
+
+[node name="Ship" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 246.991, 157.045 )
+
+[node name="RigidBody2D" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 121.29, 76.4495 )
 
 

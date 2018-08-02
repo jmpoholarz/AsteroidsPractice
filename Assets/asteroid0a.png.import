@@ -10,7 +10,7 @@ source_file="res://Assets/asteroid0a.png"
 source_md5="8e43f09ea0679c364a01d67b6f134f7d"
 
 dest_files=[ "res://.import/asteroid0a.png-816e9747aaaf0bf592285b87eeb85b78.stex" ]
-dest_md5="d6c70e6cb5ec02b4ca2e1c0b275c132f"
+dest_md5="a16888fec0c6c006e77d5e30e0d6b66c"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
