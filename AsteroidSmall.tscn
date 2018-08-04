@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 3.0
 
 [node name="AsteroidSmall" type="RigidBody2D"]
 
@@ -36,9 +36,8 @@ texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( -5.45612e-07, 1.87984e-07 )
-scale = Vector2( 0.384615, 0.384615 )
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="ScreenWrap" parent="." index="2" instance=ExtResource( 2 )]
 

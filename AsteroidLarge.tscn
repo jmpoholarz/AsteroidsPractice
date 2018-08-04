@@ -7,12 +7,12 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 15.0
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 14, 15 )
 
 [node name="AsteroidLarge" type="Area2D" index="0"]
 
@@ -35,16 +35,16 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 position = Vector2( 2.89083e-06, 1.57952e-06 )
-scale = Vector2( 1.53846, 1.53846 )
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="ScreenWrap" parent="." index="2" instance=ExtResource( 3 )]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." index="3"]
 
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 3
+collision_mask = 3
 mode = 0
 mass = 1.0
 friction = 1.0
@@ -52,20 +52,27 @@ bounce = 0.0
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
+contacts_reported = 10
+contact_monitor = true
 sleeping = false
-can_sleep = true
+can_sleep = false
 linear_velocity = Vector2( 0, 0 )
 linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="0"]
 
 shape = SubResource( 2 )
-disabled = true
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="area_entered" from="." to="." method="_on_AsteroidLarge_area_entered"]
+
+[connection signal="area_shape_entered" from="." to="." method="_on_AsteroidLarge_area_shape_entered"]
+
+[connection signal="body_entered" from="." to="." method="_on_AsteroidLarge_body_entered"]
+
+[connection signal="body_shape_entered" from="." to="." method="_on_AsteroidLarge_body_shape_entered"]
 
 

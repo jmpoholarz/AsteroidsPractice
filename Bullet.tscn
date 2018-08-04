@@ -7,10 +7,11 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 1, 1 )
 
 [node name="Bullet" type="RigidBody2D"]
 
+position = Vector2( 0, -1 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 2
@@ -21,10 +22,10 @@ bounce = 0.0
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
+contacts_reported = 1
+contact_monitor = true
 sleeping = false
-can_sleep = true
+can_sleep = false
 linear_velocity = Vector2( 0, 0 )
 linear_damp = -1.0
 angular_velocity = 0.0
@@ -39,8 +40,8 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 position = Vector2( 1.19209e-07, 1.19209e-07 )
-scale = Vector2( 0.153846, 0.153846 )
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="ScreenWrap" parent="." index="2" instance=ExtResource( 3 )]
 
@@ -50,6 +51,10 @@ process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+
+[connection signal="body_shape_entered" from="." to="." method="_on_Bullet_body_shape_entered"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
