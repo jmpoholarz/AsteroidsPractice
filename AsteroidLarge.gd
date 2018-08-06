@@ -1,24 +1,31 @@
 extends Area2D
 
 var mediumAsteroid = load('res://AsteroidMedium.tscn')
+var velocity = Vector2(0,0)
 
 func _ready():
-	# Called every time the node is added to the scene.
-	
 	# Seed random number
 	randomize()
+	# Set initial direction and velocity
 	var direction = randi() % 360
-	$RigidBody2D.linear_velocity.x = randi() % 10
-	$RigidBody2D.linear_velocity.y = randi() % 10
+	velocity.x = randi() % 20 + 10
+	velocity.y = randi() % 20 + 10
 	pass
 
 func _process(delta):
 	pass
 
+func _physics_process(delta):
+	position.x += velocity.x * delta
+	position.y += velocity.y * delta
 
 func _on_AsteroidLarge_body_entered(body):
 	print("body entered")
-	get_parent().add_child(mediumAsteroid.instance())
+	print(body)
+	var med1 = mediumAsteroid.instance()
+	med1.position.x = position.x
+	med1.position.y = position.y
+	get_parent().add_child(med1)
 	get_parent().remove_child(self)
 
 

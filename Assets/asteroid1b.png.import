@@ -7,10 +7,7 @@ path="res://.import/asteroid1b.png-d8b88bcb9f9d9da34234bb5b2444d4d6.stex"
 [deps]
 
 source_file="res://Assets/asteroid1b.png"
-source_md5="2f33f0ccbdce940d8d8de3ee549fa05c"
-
 dest_files=[ "res://.import/asteroid1b.png-d8b88bcb9f9d9da34234bb5b2444d4d6.stex" ]
-dest_md5="eb1e5d34f65e9c873f0152a065c67fc1"
 
 [params]
 
