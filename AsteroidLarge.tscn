@@ -9,7 +9,7 @@
 custom_solver_bias = 0.0
 radius = 15.0
 
-[node name="AsteroidLarge" type="Area2D"]
+[node name="AsteroidLarge" type="Area2D" index="0"]
 
 input_pickable = false
 gravity_vec = Vector2( 0, 1 )
@@ -35,12 +35,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="ScreenWrap" parent="." index="2" instance=ExtResource( 3 )]
 
-[connection signal="area_entered" from="." to="." method="_on_AsteroidLarge_area_entered"]
-
 [connection signal="area_shape_entered" from="." to="." method="_on_AsteroidLarge_area_shape_entered"]
-
-[connection signal="body_entered" from="." to="." method="_on_AsteroidLarge_body_entered"]
-
-[connection signal="body_shape_entered" from="." to="." method="_on_AsteroidLarge_body_shape_entered"]
 
 

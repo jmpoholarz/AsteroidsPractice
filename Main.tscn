@@ -4,7 +4,7 @@
 [ext_resource path="res://Ship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://AsteroidLarge.tscn" type="PackedScene" id=3]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -41,5 +41,13 @@ position = Vector2( 246.991, 157.045 )
 [node name="Asteroid" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 121.29, 76.4495 )
+
+[node name="AsteroidLarge" parent="." index="3" instance=ExtResource( 3 )]
+
+position = Vector2( 373.506, 67.6689 )
+
+[node name="AsteroidLarge2" parent="." index="4" instance=ExtResource( 3 )]
+
+position = Vector2( 143.299, 184.431 )
 
 

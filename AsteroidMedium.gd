@@ -5,8 +5,11 @@ var smallAsteroid = load('res://AsteroidSmall.tscn')
 var velocity = Vector2(0,0)
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
+	# Init random number generator
+	randomize()
+	# Set initial velocity
+	velocity.x = randi() % 30 + 10
+	velocity.y = randi() % 30 + 10
 	pass
 
 func _process(delta):
@@ -15,3 +18,12 @@ func _process(delta):
 func _physics_process(delta):
 	position.x += velocity.x * delta
 	position.y += velocity.y * delta
+
+func _on_AsteroidMedium_area_shape_entered(area_id, area, area_shape, self_shape):
+	print(typeof(area))
+	var small1 = smallAsteroid.instance()
+	small1.position.x = position.x
+	small1.position.y = position.y
+	get_parent().add_child(small1)
+	# Remove at the end of the grame
+	queue_free()

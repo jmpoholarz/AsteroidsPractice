@@ -34,4 +34,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="ScreenWrap" parent="." index="2" instance=ExtResource( 3 )]
 
+[connection signal="area_shape_entered" from="." to="." method="_on_AsteroidMedium_area_shape_entered"]
+
 
