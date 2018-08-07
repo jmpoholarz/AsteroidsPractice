@@ -8,6 +8,12 @@ func _ready():
 	# Set initial velocity
 	velocity.x = randi() % 40 + 10
 	velocity.y = randi() % 40 + 10
+	var xSign = randi() % 2
+	var ySign = randi() % 2
+	if xSign == 0:
+		velocity.x *= -1
+	if ySign == 0:
+		velocity.y *= -1
 	pass
 
 func _process(delta):
