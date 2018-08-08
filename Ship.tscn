@@ -9,7 +9,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
 
-[node name="Ship" type="Area2D"]
+[node name="Ship" type="Area2D" index="0"]
 
 position = Vector2( 0, -1 )
 input_pickable = true

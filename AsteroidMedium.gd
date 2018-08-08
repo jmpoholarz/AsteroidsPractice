@@ -26,7 +26,6 @@ func _physics_process(delta):
 	position.y += velocity.y * delta
 
 func _on_AsteroidMedium_area_shape_entered(area_id, area, area_shape, self_shape):
-	print(typeof(area))
 	var small1 = smallAsteroid.instance()
 	small1.position.x = position.x
 	small1.position.y = position.y
