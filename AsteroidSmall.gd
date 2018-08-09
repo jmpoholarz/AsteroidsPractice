@@ -1,8 +1,13 @@
 extends Area2D
 
+signal increase_score(amount)
+
 var velocity = Vector2(0,0)
 
 func _ready():
+	# Connect signals
+	var mainNode = get_node("/root/Main")
+	connect("increase_score", mainNode, "increase_score")
 	# Init random number generator
 	randomize()
 	# Set initial velocity
@@ -26,3 +31,5 @@ func _physics_process(delta):
 func _on_AsteroidSmall_area_shape_entered(area_id, area, area_shape, self_shape):
 	# Remove at the end of the grame
 	queue_free()
+	# Increase score
+	emit_signal("increase_score", 20)

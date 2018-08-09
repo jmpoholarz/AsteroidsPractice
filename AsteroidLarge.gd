@@ -1,9 +1,18 @@
 extends Area2D
 
 var mediumAsteroid = load('res://AsteroidMedium.tscn')
+
+signal increase_score(amount)
+
 var velocity = Vector2(0,0)
+var childSeed
+var amount = 100
 
 func _ready():
+	# Set node connections
+	var mainNode = get_node("/root/Main")
+	connect("increase_score", mainNode, "increase_score")
+	
 	# Seed random number
 	randomize()
 	# Set initial velocity
@@ -15,7 +24,8 @@ func _ready():
 		velocity.x *= -1
 	if ySign == 0:
 		velocity.y *= -1
-	# TODO: Make direction not only positive
+	# Init number of asteroids when destroyed
+	childSeed = randi() % 100
 	pass
 
 func _process(delta):
@@ -26,10 +36,29 @@ func _physics_process(delta):
 	position.y += velocity.y * delta
 
 func _on_AsteroidLarge_area_shape_entered(area_id, area, area_shape, self_shape):	
-	var med1 = mediumAsteroid.instance()
-	med1.position.x = position.x
-	med1.position.y = position.y
-	get_parent().add_child(med1)
+	# Add Medium Asteroids
+	create_asteroids()
 	# Remove at the end of the frame
 	queue_free()
-	
+	# Increase score
+	emit_signal("increase_score", 100)
+
+func create_asteroids():
+	# 20% chance of 4 asteroids
+	if childSeed >= 80:
+		var med4 = mediumAsteroid.instance()
+		med4.position = position
+		get_parent().add_child(med4)
+	# 60% chance of 3 asteroids
+	if childSeed >= 20:
+		var med3 = mediumAsteroid.instance()
+		med3.position = position
+		get_parent().add_child(med3)
+	# 20% chance of 2 asteroids
+	if childSeed >= 0:
+		var med1 = mediumAsteroid.instance()
+		var med2 = mediumAsteroid.instance()
+		med1.position = position
+		med2.position = position
+		get_parent().add_child(med1)
+		get_parent().add_child(med2)
