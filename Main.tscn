@@ -1,17 +1,32 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Assets/fonts/pcsenior16.tres" type="DynamicFont" id=2]
-[ext_resource path="res://AsteroidLarge.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Ship.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/ship.png" type="Texture" id=5]
-[ext_resource path="res://Assets/fonts/pcsenior8.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Assets/theme.tres" type="Theme" id=3]
+[ext_resource path="res://AsteroidLarge.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Ship.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/ship.png" type="Texture" id=6]
+[ext_resource path="res://Assets/fonts/pcsenior8.tres" type="DynamicFont" id=7]
 
 [node name="Main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
-[node name="UI" type="HBoxContainer" parent="." index="0"]
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 1 )
+
+[node name="UI" type="HBoxContainer" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -28,6 +43,7 @@ _sections_unfolded = [ "Grow Direction", "Rect" ]
 
 [node name="LeftDock" type="VBoxContainer" parent="UI" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -41,7 +57,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 0
-_sections_unfolded = [ "Rect", "Size Flags" ]
+_sections_unfolded = [ "Margin", "Rect", "Size Flags" ]
 
 [node name="scoreLabel" type="Label" parent="UI/LeftDock" index="0"]
 
@@ -138,14 +154,15 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Left"
+text = "L"
 flat = false
 align = 1
-_sections_unfolded = [ "Size Flags" ]
+_sections_unfolded = [ "Size Flags", "Theme" ]
 
 [node name="rightButton" type="Button" parent="UI/LeftDock/buttonContainer" index="1"]
 
@@ -163,14 +180,15 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Right"
+text = "R"
 flat = false
 align = 1
-_sections_unfolded = [ "Size Flags" ]
+_sections_unfolded = [ "Size Flags", "Theme" ]
 
 [node name="CenterDock" type="VBoxContainer" parent="UI" index="1"]
 
@@ -254,25 +272,41 @@ shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
 _sections_unfolded = [ "Rendering" ]
 
-[node name="Asteroid" parent="UI/CenterDock/ViewportContainer/Viewport" index="0" instance=ExtResource( 3 )]
+[node name="ColorRect" type="ColorRect" parent="UI/CenterDock/ViewportContainer/Viewport" index="0"]
+
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -256.0
+margin_top = -256.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.0976563, 0.0976563, 0.0976563, 1 )
+_sections_unfolded = [ "Rect", "Size Flags" ]
+
+[node name="Asteroid" parent="UI/CenterDock/ViewportContainer/Viewport" index="1" instance=ExtResource( 4 )]
 
 position = Vector2( 121.29, 76.4495 )
 
-[node name="AsteroidLarge" parent="UI/CenterDock/ViewportContainer/Viewport" index="1" instance=ExtResource( 3 )]
+[node name="AsteroidLarge" parent="UI/CenterDock/ViewportContainer/Viewport" index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 373.506, 67.6689 )
 
-[node name="AsteroidLarge2" parent="UI/CenterDock/ViewportContainer/Viewport" index="2" instance=ExtResource( 3 )]
+[node name="AsteroidLarge2" parent="UI/CenterDock/ViewportContainer/Viewport" index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 143.299, 184.431 )
 
-[node name="Ship" parent="UI/CenterDock/ViewportContainer/Viewport" index="3" instance=ExtResource( 4 )]
+[node name="Ship" parent="UI/CenterDock/ViewportContainer/Viewport" index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 246.991, 157.045 )
 
 [node name="lifeLevelContainer" type="HBoxContainer" parent="UI/CenterDock" index="2"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -303,7 +337,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 stretch_mode = 3
 _sections_unfolded = [ "Theme", "Visibility" ]
 
@@ -323,7 +357,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "x3"
 percent_visible = 1.0
 lines_skipped = 0
@@ -364,7 +398,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 7 )
 text = "1"
 align = 2
 percent_visible = 1.0
@@ -408,6 +442,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+theme = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -415,7 +450,7 @@ group = null
 text = "Fire"
 flat = false
 align = 1
-_sections_unfolded = [ "Rect", "Size Flags" ]
+_sections_unfolded = [ "Rect", "Size Flags", "Theme" ]
 
 [node name="RightDock" type="VBoxContainer" parent="UI" index="2"]
 
@@ -501,7 +536,6 @@ _sections_unfolded = [ "Rect", "Size Flags", "Visibility" ]
 
 [node name="buttonContainer" type="HBoxContainer" parent="UI/RightDock" index="3"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -534,14 +568,15 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Forw"
+text = "Fw"
 flat = false
 align = 1
-_sections_unfolded = [ "Rect", "Size Flags" ]
+_sections_unfolded = [ "Rect", "Size Flags", "Theme" ]
 
 [node name="backButton" type="Button" parent="UI/RightDock/buttonContainer" index="1"]
 
@@ -559,13 +594,14 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Back"
+text = "Bk"
 flat = false
 align = 1
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "Theme" ]
 
 

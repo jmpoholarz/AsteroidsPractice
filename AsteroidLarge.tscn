@@ -9,7 +9,9 @@
 custom_solver_bias = 0.0
 radius = 15.0
 
-[node name="AsteroidLarge" type="Area2D"]
+[node name="AsteroidLarge" type="Area2D" groups=[
+"asteroids",
+]]
 
 input_pickable = false
 gravity_vec = Vector2( 0, 1 )
