@@ -4,6 +4,7 @@ var scoreValueLabel
 var highScoreValueLabel
 var lifeValueLabel
 var levelValueLabel
+var levelManager
 
 func _ready():
 	# Reference nodes
@@ -11,6 +12,7 @@ func _ready():
 	highScoreValueLabel = get_node("UI/RightDock/highValueLabel")
 	lifeValueLabel = get_node("UI/CenterDock/lifeLevelContainer/lifeValueLabel")
 	levelValueLabel = get_node("UI/CenterDock/lifeLevelContainer/levelLabel")
+	levelManager = get_node("UI/CenterDock/ViewportContainer/Viewport/LevelManager")
 	# Set values
 	scoreValueLabel.text = str(0)
 	highScoreValueLabel.text = str(25000)
@@ -32,6 +34,9 @@ func set_lives_relative(amount):
 	lifeValueLabel.text = "x" + str(lives)
 	
 func increase_level():
+	# Update GUI
 	var level = int(levelValueLabel.text)
 	level += 1
 	levelValueLabel.text = str(level)
+	# Advance level in levelManager
+	levelManager.load_level(level)
