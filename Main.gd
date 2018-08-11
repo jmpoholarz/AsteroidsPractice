@@ -18,8 +18,14 @@ func _ready():
 	highScoreValueLabel.text = str(25000)
 	lifeValueLabel.text = "x3"
 	levelValueLabel.text = str(1)
+	$PauseWindow.visible = false
 
 func _process(delta):
+	# Check if paused button pressed
+	if Input.is_action_just_pressed('ui_pause'):
+		$PauseWindow.show()
+		get_tree().paused = true
+	
 	if get_tree().get_nodes_in_group("asteroids").size() == 0:
 		increase_level()
 
