@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Play.gd" type="Script" id=1]
 [ext_resource path="res://Assets/fonts/pcsenior16.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Assets/theme.tres" type="Theme" id=3]
 [ext_resource path="res://LevelManager.tscn" type="PackedScene" id=4]

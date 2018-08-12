@@ -1,6 +1,7 @@
 extends Area2D
 
 var mediumAsteroid = load('res://AsteroidMedium.tscn')
+var particleEmitter = load('res://AsteroidParticleEmitter.tscn')
 
 signal increase_score(amount)
 
@@ -10,7 +11,7 @@ var amount = 100
 
 func _ready():
 	# Set node connections
-	var mainNode = get_node("/root/Main")
+	var mainNode = get_node("/root/Play")
 	connect("increase_score", mainNode, "increase_score")
 	
 	# Seed random number
@@ -38,10 +39,16 @@ func _physics_process(delta):
 func _on_AsteroidLarge_area_shape_entered(area_id, area, area_shape, self_shape):	
 	# Add Medium Asteroids
 	create_asteroids()
-	# Remove at the end of the frame
-	queue_free()
+	# Create one-shot particle emitter
+	var particles = particleEmitter.instance()
+	particles.position = position
+	particles.amount = 12
+	get_parent().add_child(particles)
 	# Increase score
 	emit_signal("increase_score", 100)
+	# Remove at the end of the frame
+	queue_free()
+
 
 func create_asteroids():
 	# 20% chance of 4 asteroids

@@ -2,11 +2,13 @@ extends Area2D
 
 signal increase_score(amount)
 
+var particleEmitter = load('res://AsteroidParticleEmitter.tscn')
+
 var velocity = Vector2(0,0)
 
 func _ready():
 	# Connect signals
-	var mainNode = get_node("/root/Main")
+	var mainNode = get_node("/root/Play")
 	connect("increase_score", mainNode, "increase_score")
 	# Init random number generator
 	randomize()
@@ -29,7 +31,12 @@ func _physics_process(delta):
 	position.y += velocity.y * delta
 
 func _on_AsteroidSmall_area_shape_entered(area_id, area, area_shape, self_shape):
-	# Remove at the end of the grame
-	queue_free()
+	# Create one-shot particle emitter
+	var particles = particleEmitter.instance()
+	particles.position = position
+	particles.amount = 4
+	get_parent().add_child(particles)
 	# Increase score
 	emit_signal("increase_score", 20)
+	# Remove at the end of the grame
+	queue_free()
