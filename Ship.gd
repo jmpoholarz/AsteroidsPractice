@@ -43,10 +43,10 @@ func _process(delta):
 		var mag = magnitude(velocity.x, velocity.y)
 		# If the ship is moving, account for it in the bullet velocity calculation
 		if mag > 0:
-			print(str(ship_u_vec.x) + "*" + str(BULLET_MAG) + "+" + str(velocity.x))
-			#bullet.velocity.x = ship_u_vec.x * BULLET_MAG + velocity.x
-			print(str(ship_u_vec.y) + "*" + str(BULLET_MAG) + "+" + str(velocity.y))
-			#bullet.velocity.y = ship_u_vec.y * BULLET_MAG + velocity.y
+			#print(str(ship_u_vec.x) + "*" + str(BULLET_MAG) + "+" + str(velocity.x))
+			bullet.velocity.x = ship_u_vec.x * BULLET_MAG + velocity.x
+			#print(str(ship_u_vec.y) + "*" + str(BULLET_MAG) + "+" + str(velocity.y))
+			bullet.velocity.y = ship_u_vec.y * BULLET_MAG + velocity.y
 		# Otherwise use just the bullet magnitude to calculate
 		else:
 			bullet.velocity.x = ship_u_vec.x * BULLET_MAG
