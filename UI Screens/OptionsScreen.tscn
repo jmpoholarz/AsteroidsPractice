@@ -116,7 +116,6 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer" index="2"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -133,7 +132,7 @@ size_flags_vertical = 1
 columns = 2
 _sections_unfolded = [ "Anchor", "Rect", "Size Flags" ]
 
-[node name="Label" type="Label" parent="VBoxContainer/GridContainer" index="0"]
+[node name="ForwardLabel" type="Label" parent="VBoxContainer/GridContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -153,7 +152,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Button" type="Button" parent="VBoxContainer/GridContainer" index="1"]
+[node name="ForwardButton" type="Button" parent="VBoxContainer/GridContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -177,7 +176,7 @@ text = "Up"
 flat = false
 align = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/GridContainer" index="2"]
+[node name="BackLabel" type="Label" parent="VBoxContainer/GridContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -197,7 +196,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Button2" type="Button" parent="VBoxContainer/GridContainer" index="3"]
+[node name="BackButton" type="Button" parent="VBoxContainer/GridContainer" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -214,6 +213,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -222,7 +222,7 @@ text = "Down"
 flat = false
 align = 1
 
-[node name="Label3" type="Label" parent="VBoxContainer/GridContainer" index="4"]
+[node name="TurnCCWLabel" type="Label" parent="VBoxContainer/GridContainer" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -242,7 +242,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Button3" type="Button" parent="VBoxContainer/GridContainer" index="5"]
+[node name="TurnCCWButton" type="Button" parent="VBoxContainer/GridContainer" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -267,7 +267,7 @@ text = "Left"
 flat = false
 align = 1
 
-[node name="Label4" type="Label" parent="VBoxContainer/GridContainer" index="6"]
+[node name="TurnCWLabel" type="Label" parent="VBoxContainer/GridContainer" index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -287,7 +287,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Button4" type="Button" parent="VBoxContainer/GridContainer" index="7"]
+[node name="TurnCWButton" type="Button" parent="VBoxContainer/GridContainer" index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -312,7 +312,7 @@ text = "Right"
 flat = false
 align = 1
 
-[node name="Label5" type="Label" parent="VBoxContainer/GridContainer" index="8"]
+[node name="ShootLabel" type="Label" parent="VBoxContainer/GridContainer" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -332,7 +332,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Button5" type="Button" parent="VBoxContainer/GridContainer" index="9"]
+[node name="ShootButton" type="Button" parent="VBoxContainer/GridContainer" index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -353,11 +353,11 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Space"
+text = "Z"
 flat = false
 align = 1
 
-[node name="Label6" type="Label" parent="VBoxContainer/GridContainer" index="10"]
+[node name="ConfirmLabel" type="Label" parent="VBoxContainer/GridContainer" index="10"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -377,7 +377,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Button6" type="Button" parent="VBoxContainer/GridContainer" index="11"]
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/GridContainer" index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -394,6 +394,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -402,7 +403,7 @@ text = "Enter"
 flat = false
 align = 1
 
-[node name="Label7" type="Label" parent="VBoxContainer/GridContainer" index="12"]
+[node name="CancelLabel" type="Label" parent="VBoxContainer/GridContainer" index="12"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -422,7 +423,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Button7" type="Button" parent="VBoxContainer/GridContainer" index="13"]
+[node name="CancelButton" type="Button" parent="VBoxContainer/GridContainer" index="13"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -439,6 +440,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -447,7 +449,7 @@ text = "Escape"
 flat = false
 align = 1
 
-[node name="Label" type="Label" parent="VBoxContainer" index="3"]
+[node name="HighScoresLabel" type="Label" parent="VBoxContainer" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -494,6 +496,7 @@ align = 1
 
 [node name="HighScoreResetConfirmation" type="ConfirmationDialog" parent="." index="1"]
 
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -519,6 +522,22 @@ want to delete all
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog", "Popup", "Theme" ]
 
+[connection signal="pressed" from="VBoxContainer/GridContainer/ForwardButton" to="." method="_on_ForwardButton_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/BackButton" to="." method="_on_BackButton_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/TurnCCWButton" to="." method="_on_TurnCCWButton_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/TurnCWButton" to="." method="_on_TurnCWButton_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/ShootButton" to="." method="_on_ShootButton_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
+
 [connection signal="pressed" from="VBoxContainer/ResetScoresButton" to="." method="_on_ResetScoresButton_pressed"]
+
+[connection signal="confirmed" from="HighScoreResetConfirmation" to="." method="_on_HighScoreResetConfirmation_confirmed"]
 
 
