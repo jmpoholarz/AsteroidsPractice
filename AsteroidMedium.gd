@@ -10,7 +10,7 @@ var childSeed
 
 func _ready():
 	# Set node connections
-	var mainNode = get_node("/root/Play")
+	var mainNode = get_node("/root/Main/Screen/Play")
 	connect("increase_score", mainNode, "increase_score")
 	
 	# Init random number generator

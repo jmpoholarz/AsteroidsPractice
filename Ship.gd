@@ -1,5 +1,7 @@
 extends Area2D
 
+signal ship_crashed
+
 var Bullet = load("res://Bullet.tscn")
 var Explosion = load("res://Explosion.tscn")
 
@@ -12,6 +14,9 @@ var isInvincible
 
 
 func _ready():
+	# Connect signals
+	connect("ship_crashed", get_node("/root/Main/Screen/Play"), "set_lives_relative")
+	
 	isDead = false
 	isInvincible = false
 	position.x = 200
@@ -93,13 +98,16 @@ func _on_Ship_area_shape_entered(area_id, area, area_shape, self_shape):
 
 
 func _on_RespawnDelay_timeout():
+	# Decrease Lives UI Counter
+	emit_signal("ship_crashed", -1)
+	# Respawn ship w/ invincibility
 	isDead = false
 	isInvincible = true
 	$Sprite.visible = true
 	$Sprite/AnimationPlayer.play("Invincible")
 
 
-
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Invincible":
 		isInvincible = false;
+		

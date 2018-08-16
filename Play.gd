@@ -1,5 +1,7 @@
 extends Node
 
+signal changeScreenTo
+
 var scoreValueLabel
 var highScoreValueLabel
 var lifeValueLabel
@@ -13,6 +15,8 @@ func _ready():
 	lifeValueLabel = get_node("UI/CenterDock/lifeLevelContainer/lifeValueLabel")
 	levelValueLabel = get_node("UI/CenterDock/lifeLevelContainer/levelLabel")
 	levelManager = get_node("UI/CenterDock/ViewportContainer/Viewport/LevelManager")
+	# Connect signals
+	connect("changeScreenTo", get_node("/root/Main"), "changeScreenTo")
 	# Set values
 	scoreValueLabel.text = str(0)
 	highScoreValueLabel.text = str(25000)
@@ -35,9 +39,16 @@ func increase_score(amount):
 	scoreValueLabel.text = str(score)
 
 func set_lives_relative(amount):
-	var lives = int(lifeValueLabel.text.erase(0,1))
+	# Remove 'x' from label
+	lifeValueLabel.text.erase(0,1)
+	# Change by amount
+	var lives = int(lifeValueLabel.text)
 	lives += amount
+	# Readd the 'x' and set label
 	lifeValueLabel.text = "x" + str(lives)
+	# End game if out of lives
+	if lives <= 0:
+		game_over()
 	
 func increase_level():
 	# Update GUI
@@ -46,3 +57,10 @@ func increase_level():
 	levelValueLabel.text = str(level)
 	# Advance level in levelManager
 	levelManager.load_level(level)
+
+
+func game_over():
+	# Display game over message and change screen
+	##TODO High Score & Game Over
+	emit_signal("changeScreenTo", "TITLE")
+	queue_free()

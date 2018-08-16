@@ -1,12 +1,17 @@
 extends Node
 
+signal changeScreenTo
+
 var inReassignMode = false
 var actionReassigning = ""
 var buttonReassigning
 
 func _ready():
+	# Connect signals
+	connect("changeScreenTo", get_tree().get_root().get_node("Main"), "changeScreenTo")
+	# Auto focus Volume Slider
 	$VBoxContainer/VolumeContainer/VolumeSlider.grab_focus()
-	set_process_input(true)
+	set_process_input(true) #Needed?
 
 
 ##TODO::Handle Pause Button
@@ -20,9 +25,10 @@ func _input(event):
 	
 	# Ignore input if not trying to reassign
 	if inReassignMode == false:
-		###TODO Want to go to previous screen if cancel pressed here
-		#if event.is_action("ui_cancel"):
-		return
+		if event.is_action("ui_cancel"):
+			emit_signal("changeScreenTo", "TITLE")
+			queue_free()
+			return
 	# Handle reassigning
 	var scancode = OS.get_scancode_string(event.scancode)
 	buttonReassigning.text = scancode
