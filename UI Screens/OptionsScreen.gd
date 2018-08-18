@@ -28,7 +28,7 @@ func _input(event):
 		if event.is_action("ui_cancel"):
 			emit_signal("changeScreenTo", "TITLE")
 			queue_free()
-			return
+		return
 	# Handle reassigning
 	var scancode = OS.get_scancode_string(event.scancode)
 	buttonReassigning.text = scancode

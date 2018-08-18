@@ -3,6 +3,11 @@ extends Area2D
 var smallAsteroid = load('res://AsteroidSmall.tscn')
 var particleEmitter = load('res://AsteroidParticleEmitter.tscn')
 
+var pathToTextureA = 'res://Assets/asteroid1a.png'
+var pathToTextureB = 'res://Assets/asteroid1b.png'
+var pathToTextureC = 'res://Assets/asteroid1c.png'
+var pathToTextureD = 'res://Assets/asteroid1d.png'
+
 signal increase_score(amount)
 
 var velocity = Vector2(0,0)
@@ -26,7 +31,8 @@ func _ready():
 		velocity.y *= -1
 	# Init number of asteroids when destroyed
 	childSeed = randi() % 100
-	pass
+	# Init random graphic
+	load_graphic(randi() % 4)
 
 func _process(delta):
 	pass
@@ -69,3 +75,14 @@ func create_asteroids():
 		var small1 = smallAsteroid.instance()
 		small1.position = position
 		get_parent().add_child(small1)
+
+
+func load_graphic(index):
+	if index == 0:
+		$Sprite.texture = load(pathToTextureA)
+	elif index == 1:
+		$Sprite.texture = load(pathToTextureB)
+	elif index == 2:
+		$Sprite.texture = load(pathToTextureC)
+	elif index == 3:
+		$Sprite.texture = load(pathToTextureD)
