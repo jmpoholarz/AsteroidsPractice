@@ -44,7 +44,6 @@ _sections_unfolded = [ "Grow Direction", "Rect" ]
 
 [node name="LeftDock" type="VBoxContainer" parent="UI" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -441,7 +440,6 @@ _sections_unfolded = [ "Rect", "Size Flags", "Theme" ]
 
 [node name="RightDock" type="VBoxContainer" parent="UI" index="2"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -592,5 +590,25 @@ align = 1
 _sections_unfolded = [ "Rect", "Theme" ]
 
 [node name="PauseWindow" parent="." index="2" instance=ExtResource( 7 )]
+
+[connection signal="button_down" from="UI/LeftDock/buttonContainer/leftButton" to="." method="_on_leftButton_button_down"]
+
+[connection signal="button_up" from="UI/LeftDock/buttonContainer/leftButton" to="." method="_on_leftButton_button_up"]
+
+[connection signal="button_down" from="UI/LeftDock/buttonContainer/rightButton" to="." method="_on_rightButton_button_down"]
+
+[connection signal="button_up" from="UI/LeftDock/buttonContainer/rightButton" to="." method="_on_rightButton_button_up"]
+
+[connection signal="button_down" from="UI/CenterDock/fireButton" to="." method="_on_fireButton_button_down"]
+
+[connection signal="button_up" from="UI/CenterDock/fireButton" to="." method="_on_fireButton_button_up"]
+
+[connection signal="button_down" from="UI/RightDock/buttonContainer/forwardButton" to="." method="_on_forwardButton_button_down"]
+
+[connection signal="button_up" from="UI/RightDock/buttonContainer/forwardButton" to="." method="_on_forwardButton_button_up"]
+
+[connection signal="button_down" from="UI/RightDock/buttonContainer/backButton" to="." method="_on_backButton_button_down"]
+
+[connection signal="button_up" from="UI/RightDock/buttonContainer/backButton" to="." method="_on_backButton_button_up"]
 
 

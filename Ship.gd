@@ -68,6 +68,10 @@ func _physics_process(delta):
 	if Input.is_action_pressed('ship_go_forward'):
 		var d = 2*Vector2(sin(rotation_angle*PI/180), -cos(rotation_angle*PI/180))
 		velocity += d
+	# Handle backward movement
+	if Input.is_action_pressed('ship_go_backward'):
+		var d = -2*Vector2(sin(rotation_angle*PI/180), -cos(rotation_angle*PI/180))
+		velocity += d
 	# Limit to max speed if over it
 	var mag = magnitude(velocity.x, velocity.y)
 	if mag > MAX_SPEED:

@@ -64,3 +64,35 @@ func game_over():
 	##TODO High Score & Game Over
 	emit_signal("changeScreenTo", "TITLE")
 	queue_free()
+
+
+func _on_rightButton_button_down():
+	Input.action_press('ship_rotate_right')
+
+func _on_rightButton_button_up():
+	Input.action_release('ship_rotate_right')
+
+
+func _on_leftButton_button_down():
+	Input.action_press('ship_rotate_left')
+
+func _on_leftButton_button_up():
+	Input.action_release('ship_rotate_left')
+
+func _on_fireButton_button_down():
+	Input.action_press('ship_shoot')
+
+func _on_fireButton_button_up():
+	Input.action_release('ship_shoot')
+
+func _on_forwardButton_button_down():
+	Input.action_press('ship_go_forward')
+
+func _on_forwardButton_button_up():
+	Input.action_release('ship_go_forward')
+
+func _on_backButton_button_down():
+	Input.action_press('ship_go_backward')
+
+func _on_backButton_button_up():
+	Input.action_release('ship_go_backward')
