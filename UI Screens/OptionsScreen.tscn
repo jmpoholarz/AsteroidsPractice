@@ -3,7 +3,7 @@
 [ext_resource path="res://UI Screens/OptionsScreen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/theme.tres" type="Theme" id=2]
 
-[node name="OptionsScreen" type="Node"]
+[node name="OptionsScreen" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -172,7 +172,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Up"
+text = "Q"
 flat = false
 align = 1
 
@@ -263,7 +263,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Left"
+text = "Q"
 flat = false
 align = 1
 
@@ -308,7 +308,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Right"
+text = "Q"
 flat = false
 align = 1
 
@@ -353,7 +353,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Z"
+text = "Q"
 flat = false
 align = 1
 
