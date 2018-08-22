@@ -55,12 +55,12 @@ func _on_HighScoreResetConfirmation_confirmed():
 # Handle all of the Control button remaps
 func _on_ForwardButton_pressed():
 	inReassignMode = true
-	actionReassigning = "ship_go_forward"
 	buttonReassigning = $VBoxContainer/GridContainer/ForwardButton
+	actionReassigning = "ship_go_forward"
 func _on_BackButton_pressed():
-	#inReassignMode = true
-	#buttonReassigning = "ship_go_back"
-	pass
+	inReassignMode = true
+	buttonReassigning = $VBoxContainer/GridContainer/BackButton
+	actionReassigning = "ship_go_back"
 func _on_TurnCCWButton_pressed():
 	inReassignMode = true
 	buttonReassigning = $VBoxContainer/GridContainer/TurnCCWButton
@@ -73,14 +73,11 @@ func _on_ShootButton_pressed():
 	inReassignMode = true
 	buttonReassigning = $VBoxContainer/GridContainer/ShootButton
 	actionReassigning = "ship_shoot"
-func _on_ConfirmButton_pressed():
-	#inReassignMode = true
-	#buttonReassigning = $VBoxContainer/GridContainer/ConfirmButton
-	pass
-func _on_CancelButton_pressed():
-	#inReassignMode = true
-	#buttonReassigning = $VBoxContainer/GridContainer/CancelButton
-	pass
+func _on_PauseButton_pressed():
+	inReassignMode = true
+	buttonReassigning = $VBoxContainer/GridContainer/PauseButton
+	actionReassigning = "ui_pause"
+
 
 
 func create_default_config():
@@ -172,5 +169,7 @@ func load_config():
 		event.scancode = config.get_value("keybinds", "ui_pause")
 		InputMap.action_add_event("ui_pause", event)
 		# Update UI
-		###TODO
+		$VBoxContainer/GridContainer/PauseButton.text = OS.get_scancode_string(event.scancode)
+
+
 
