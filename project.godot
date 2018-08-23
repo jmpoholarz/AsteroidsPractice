@@ -22,6 +22,7 @@ SettingsNode="*res://SettingsNode.gd"
 
 window/size/width=480
 window/size/height=320
+window/stretch/shrink="1"
 
 [importer_defaults]
 

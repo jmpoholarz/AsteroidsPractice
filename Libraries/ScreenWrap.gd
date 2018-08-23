@@ -1,3 +1,6 @@
+##### Credits to sp33dy on steemit.com from this implementation #####
+##### https://steemit.com/utopian-io/@sp33dy/tutorial-godot-engine-v3-gdscript-generic-screen-wrapping-node #####
+
 extends Node
 
 # Expose a Rectangle area to the tool, so that it can be defined

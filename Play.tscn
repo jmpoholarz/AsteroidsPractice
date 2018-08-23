@@ -162,7 +162,7 @@ group = null
 text = "L"
 flat = false
 align = 1
-_sections_unfolded = [ "Size Flags", "Theme" ]
+_sections_unfolded = [ "Focus", "Size Flags", "Theme" ]
 
 [node name="rightButton" type="Button" parent="UI/LeftDock/buttonContainer" index="1"]
 
@@ -175,6 +175,8 @@ margin_right = 108.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
+focus_neighbour_left = NodePath(".")
+focus_neighbour_right = NodePath(".")
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
@@ -188,7 +190,7 @@ group = null
 text = "R"
 flat = false
 align = 1
-_sections_unfolded = [ "Size Flags", "Theme" ]
+_sections_unfolded = [ "Focus", "Size Flags", "Theme" ]
 
 [node name="CenterDock" type="VBoxContainer" parent="UI" index="1"]
 

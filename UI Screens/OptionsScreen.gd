@@ -172,4 +172,11 @@ func load_config():
 		$VBoxContainer/GridContainer/PauseButton.text = OS.get_scancode_string(event.scancode)
 
 
-
+func save_config():
+	# Open the config
+	var config = ConfigFile.new()
+	# Handle audio settings
+	config.set_value("audio", "volume", $VBoxContainer/VolumeContainer/VolumeSlider.value)
+	# Handle keybind settings
+	var x = InputMap.get_action_list("ship_go_forward").front().scancode
+	config.set_value("keybinds", "ship_go_forward", x

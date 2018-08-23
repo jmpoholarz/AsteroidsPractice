@@ -33,6 +33,32 @@ func _process(delta):
 	if get_tree().get_nodes_in_group("asteroids").size() == 0:
 		increase_level()
 
+####TODO: Make button rehighlight if another is released
+func _input(event):
+	# Update GUI based on input events
+	# Press events
+	if event.is_action_pressed("ship_go_forward"):
+		$UI/RightDock/buttonContainer/forwardButton.grab_focus()
+	elif event.is_action_pressed("ship_go_backward"):
+		$UI/RightDock/buttonContainer/backButton.grab_focus()
+	elif event.is_action_pressed("ship_rotate_left"):
+		$UI/LeftDock/buttonContainer/leftButton.grab_focus()
+	elif event.is_action_pressed("ship_rotate_right"):
+		$UI/LeftDock/buttonContainer/rightButton.grab_focus()
+	elif event.is_action_pressed("ship_shoot"):
+		$UI/CenterDock/fireButton.grab_focus()
+	# Release events
+	elif event.is_action_released("ship_go_forward"):
+		$UI/RightDock/buttonContainer/forwardButton.release_focus()
+	elif event.is_action_released("ship_go_backward"):
+		$UI/RightDock/buttonContainer/backButton.release_focus()
+	elif event.is_action_released("ship_rotate_left"):
+		$UI/LeftDock/buttonContainer/leftButton.release_focus()
+	elif event.is_action_released("ship_rotate_right"):
+		$UI/LeftDock/buttonContainer/rightButton.release_focus()
+	elif event.is_action_released("ship_shoot"):
+		$UI/CenterDock/fireButton.release_focus()
+
 func increase_score(amount):
 	var score = int(scoreValueLabel.text)
 	score += amount
