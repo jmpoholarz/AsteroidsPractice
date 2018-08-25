@@ -28,6 +28,8 @@ func _input(event):
 	# Ignore input if not trying to reassign
 	if inReassignMode == false:
 		if event.is_action("ui_cancel"):
+			# Save config and return to title screen
+			save_config()
 			emit_signal("changeScreenTo", "TITLE")
 			queue_free()
 		return
@@ -60,15 +62,15 @@ func _on_ForwardButton_pressed():
 func _on_BackButton_pressed():
 	inReassignMode = true
 	buttonReassigning = $VBoxContainer/GridContainer/BackButton
-	actionReassigning = "ship_go_back"
+	actionReassigning = "ship_go_backward"
 func _on_TurnCCWButton_pressed():
 	inReassignMode = true
 	buttonReassigning = $VBoxContainer/GridContainer/TurnCCWButton
-	actionReassigning = "ship_turn_left"
+	actionReassigning = "ship_rotate_left"
 func _on_TurnCWButton_pressed():
 	inReassignMode = true
 	buttonReassigning = $VBoxContainer/GridContainer/TurnCWButton
-	actionReassigning = "ship_turn_right"
+	actionReassigning = "ship_rotate_right"
 func _on_ShootButton_pressed():
 	inReassignMode = true
 	buttonReassigning = $VBoxContainer/GridContainer/ShootButton
@@ -146,7 +148,6 @@ func load_config():
 		# Apply new keybind
 		var event = InputEventKey.new()
 		event.scancode = config.get_value("keybinds", "ship_rotate_right")
-		
 		InputMap.action_add_event("ship_rotate_right", event)
 		# Update UI
 		$VBoxContainer/GridContainer/TurnCWButton.text = OS.get_scancode_string(event.scancode)
@@ -179,4 +180,16 @@ func save_config():
 	config.set_value("audio", "volume", $VBoxContainer/VolumeContainer/VolumeSlider.value)
 	# Handle keybind settings
 	var x = InputMap.get_action_list("ship_go_forward").front().scancode
-	config.set_value("keybinds", "ship_go_forward", x
+	config.set_value("keybinds", "ship_go_forward", x)
+	x = InputMap.get_action_list("ship_go_backward").front().scancode
+	config.set_value("keybinds", "ship_go_backward", x)
+	x = InputMap.get_action_list("ship_rotate_left").front().scancode
+	config.set_value("keybinds", "ship_rotate_left", x)
+	x = InputMap.get_action_list("ship_rotate_right").front().scancode
+	config.set_value("keybinds", "ship_rotate_right", x)
+	x = InputMap.get_action_list("ship_shoot").front().scancode
+	config.set_value("keybinds", "ship_shoot", x)
+	x = InputMap.get_action_list("ui_pause").front().scancode
+	config.set_value("keybinds", "ui_pause", x)
+	# Save file
+	config.save("user://settings.cfg")
