@@ -3,7 +3,7 @@
 [ext_resource path="res://UI Screens/OptionsScreen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/theme.tres" type="Theme" id=2]
 
-[node name="OptionsScreen" type="Node" index="0"]
+[node name="OptionsScreen" type="Node"]
 
 script = ExtResource( 1 )
 

@@ -11,12 +11,13 @@ config_version=3
 [application]
 
 config/name="AsteroidsPractice"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Singletons/ScoreManager.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 SettingsNode="*res://SettingsNode.gd"
+ScoreManager="*res://Singletons/ScoreManager.gd"
 
 [display]
 
