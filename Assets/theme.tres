@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=2]
+[gd_resource type="Theme" load_steps=8 format=2]
 
 [ext_resource path="res://Assets/fonts/pcsenior16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/styleBoxFlatFocused.tres" type="StyleBox" id=2]
@@ -6,6 +6,13 @@
 [ext_resource path="res://Assets/styleBoxFlatPressed.tres" type="StyleBox" id=4]
 [ext_resource path="res://Assets/uiSlider.png" type="Texture" id=5]
 [ext_resource path="res://Assets/uiSliderTick.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
 
 [resource]
 
@@ -21,6 +28,9 @@ Button/styles/focus = ExtResource( 2 )
 Button/styles/hover = ExtResource( 2 )
 Button/styles/normal = ExtResource( 3 )
 Button/styles/pressed = ExtResource( 4 )
+HSeparator/constants/separation = 4
+HSeparator/icons/ = null
+HSeparator/styles/separator = SubResource( 1 )
 HSlider/icons/grabber = ExtResource( 5 )
 HSlider/icons/grabber_disabled = ExtResource( 5 )
 HSlider/icons/grabber_highlight = ExtResource( 5 )
@@ -33,5 +43,5 @@ HSlider/styles/slider = ExtResource( 3 )
 Panel/styles/panel = ExtResource( 2 )
 Panel/styles/panelf = null
 Panel/styles/panelnc = null
-_sections_unfolded = [ "HSlider", "HSlider/icons", "HSlider/styles", "Panel/styles" ]
+_sections_unfolded = [ "HSeparator", "HSlider/icons", "HSlider/styles", "Panel/styles" ]
 

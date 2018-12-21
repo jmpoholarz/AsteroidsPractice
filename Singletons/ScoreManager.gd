@@ -53,7 +53,6 @@ func createDefaultScores():
 	config.save("user://highscores.cfg")
 
 
-
 func load_scores():
 	# Open the config
 	var config = ConfigFile.new()

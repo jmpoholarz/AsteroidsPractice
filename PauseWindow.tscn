@@ -4,7 +4,7 @@
 [ext_resource path="res://PauseWindow.gd" type="Script" id=2]
 [ext_resource path="res://Assets/fonts/pcsenior16.tres" type="DynamicFont" id=3]
 
-[node name="PauseWindow" type="Panel" index="0"]
+[node name="PauseWindow" type="Panel"]
 
 pause_mode = 2
 anchor_left = 0.5
@@ -13,9 +13,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -98.0
 margin_top = -64.0
-margin_right = 98.0
+margin_right = 94.0
 margin_bottom = 64.0
-rect_min_size = Vector2( 196, 128 )
+rect_min_size = Vector2( 192, 128 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -44,7 +44,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "Size Flags" ]
 
 [node name="PauseLabel" type="Label" parent="VBoxContainer" index="0"]
 

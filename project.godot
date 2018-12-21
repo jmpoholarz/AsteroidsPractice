@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="AsteroidsPractice"
-run/main_scene="res://Singletons/ScoreManager.tscn"
+run/main_scene="res://UI Screens/ScoreEntryWindow.tscn"
 config/icon="res://icon.png"
 
 [autoload]
