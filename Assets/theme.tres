@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=2]
+[gd_resource type="Theme" load_steps=10 format=2]
 
 [ext_resource path="res://Assets/fonts/pcsenior16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/styleBoxFlatFocused.tres" type="StyleBox" id=2]
@@ -6,8 +6,16 @@
 [ext_resource path="res://Assets/styleBoxFlatPressed.tres" type="StyleBox" id=4]
 [ext_resource path="res://Assets/uiSlider.png" type="Texture" id=5]
 [ext_resource path="res://Assets/uiSliderTick.png" type="Texture" id=6]
+[ext_resource path="res://Assets/emptySprite.png" type="Texture" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=2]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -28,6 +36,8 @@ Button/styles/focus = ExtResource( 2 )
 Button/styles/hover = ExtResource( 2 )
 Button/styles/normal = ExtResource( 3 )
 Button/styles/pressed = ExtResource( 4 )
+Dialogs/constants/button_margin = 32
+Dialogs/constants/margin = 8
 HSeparator/constants/separation = 4
 HSeparator/icons/ = null
 HSeparator/styles/separator = SubResource( 1 )
@@ -40,8 +50,31 @@ HSlider/styles/grabber_area = null
 HSlider/styles/grabber_disabled = null
 HSlider/styles/grabber_highlight = null
 HSlider/styles/slider = ExtResource( 3 )
+MenuButton/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+MenuButton/colors/font_color_disabled = Color( 1, 1, 1, 0.3 )
+MenuButton/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
+MenuButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+MenuButton/constants/hseparation = 3
+MenuButton/fonts/font = null
+MenuButton/styles/disabled = null
+MenuButton/styles/focus = null
+MenuButton/styles/hover = null
+MenuButton/styles/normal = null
+MenuButton/styles/pressed = null
 Panel/styles/panel = ExtResource( 2 )
-Panel/styles/panelf = null
-Panel/styles/panelnc = null
-_sections_unfolded = [ "HSeparator", "HSlider/icons", "HSlider/styles", "Panel/styles" ]
+Panel/styles/panelf = ExtResource( 3 )
+Panel/styles/panelnc = ExtResource( 3 )
+PopupPanel/styles/panel = ExtResource( 3 )
+VSeparator/constants/separation = 4
+VSeparator/styles/separator = SubResource( 2 )
+WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
+WindowDialog/constants/close_h_ofs = 18
+WindowDialog/constants/close_v_ofs = 18
+WindowDialog/constants/scaleborder_size = 4
+WindowDialog/constants/title_height = 20
+WindowDialog/fonts/title_font = ExtResource( 1 )
+WindowDialog/icons/close = ExtResource( 7 )
+WindowDialog/icons/close_highlight = ExtResource( 7 )
+WindowDialog/styles/panel = ExtResource( 3 )
+_sections_unfolded = [ "Dialogs/constants", "HSlider/icons", "HSlider/styles", "Panel/styles", "PopupPanel/styles", "VSeparator/styles", "WindowDialog" ]
 

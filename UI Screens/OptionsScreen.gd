@@ -48,11 +48,9 @@ func _input(event):
 func _on_ResetScoresButton_pressed():
 	$HighScoreResetConfirmation.popup()
 
-
 func _on_HighScoreResetConfirmation_confirmed():
-	###TODO Clear high scores
-	pass 
-
+	ScoreManager.resetScores()
+	$ScoresResetOK.popup()
 
 # Handle all of the Control button remaps
 func _on_ForwardButton_pressed():

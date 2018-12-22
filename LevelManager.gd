@@ -5,6 +5,8 @@ var MediumAsteroid = load('res://AsteroidMedium.tscn')
 var SmallAsteroid = load('res://AsteroidSmall.tscn')
 var Ship = load('res://Ship.tscn')
 
+var player
+
 var LEVELS = [
 	[0,3,0],
 	[1,2,0],
@@ -17,7 +19,8 @@ var MAX_LEVEL = LEVELS.size()
 
 func _ready():
 	# Start first level
-	add_child(Ship.instance())
+	player = Ship.instance()
+	add_child(player)
 	load_level(1)
 
 func load_level(level):
@@ -35,3 +38,6 @@ func load_level(level):
 	# Load small asteroids
 	for i in range(LEVELS[level][2]):
 		add_child(SmallAsteroid.instance())
+
+func deleteShip():
+	remove_child(player)

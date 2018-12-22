@@ -69,6 +69,7 @@ max_lines_visible = -1
 
 [node name="Grid" type="GridContainer" parent="VBoxContainer" index="2"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -433,5 +434,12 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags" ]
+
+[node name="IgnoreInputTimer" type="Timer" parent="." index="1"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
 
 

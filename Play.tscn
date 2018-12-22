@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Play.gd" type="Script" id=1]
 [ext_resource path="res://Assets/fonts/pcsenior16.tres" type="DynamicFont" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Assets/ship.png" type="Texture" id=5]
 [ext_resource path="res://Assets/fonts/pcsenior8.tres" type="DynamicFont" id=6]
 [ext_resource path="res://PauseWindow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI Screens/GameOverLabel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://UI Screens/ScoreEntryWindow.tscn" type="PackedScene" id=9]
 
 [node name="Play" type="Node"]
 
@@ -29,6 +31,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="UI" type="HBoxContainer" parent="." index="1"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -593,6 +596,28 @@ _sections_unfolded = [ "Rect", "Theme" ]
 
 [node name="PauseWindow" parent="." index="2" instance=ExtResource( 7 )]
 
+[node name="GameOverLabel" parent="." index="3" instance=ExtResource( 8 )]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.0
+margin_top = -9.0
+margin_right = 72.0
+margin_bottom = 9.0
+
+[node name="ScoreEntry" parent="." index="4" instance=ExtResource( 9 )]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -64.0
+margin_right = 128.0
+margin_bottom = 64.0
+
 [connection signal="button_down" from="UI/LeftDock/buttonContainer/leftButton" to="." method="_on_leftButton_button_down"]
 
 [connection signal="button_up" from="UI/LeftDock/buttonContainer/leftButton" to="." method="_on_leftButton_button_up"]
@@ -612,5 +637,9 @@ _sections_unfolded = [ "Rect", "Theme" ]
 [connection signal="button_down" from="UI/RightDock/buttonContainer/backButton" to="." method="_on_backButton_button_down"]
 
 [connection signal="button_up" from="UI/RightDock/buttonContainer/backButton" to="." method="_on_backButton_button_up"]
+
+[connection signal="gameOverLabelExpired" from="GameOverLabel" to="." method="_on_GameOverLabel_gameOverLabelExpired"]
+
+[connection signal="scoreConfirmed" from="ScoreEntry" to="." method="_on_ScoreEntry_scoreConfirmed"]
 
 

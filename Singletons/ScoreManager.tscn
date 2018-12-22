@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Singletons/ScoreManager.gd" type="Script" id=1]
 
-[node name="ScoreManager" type="Node" index="0"]
+[node name="ScoreManager" type="Node"]
 
 script = ExtResource( 1 )
 

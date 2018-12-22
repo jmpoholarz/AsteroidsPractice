@@ -1,11 +1,13 @@
 extends Node
 
-onready var leftArrow = get_node("Panel/VerticalContainer/ArrowContainer/LeftArrow")
-onready var midArrow = get_node("Panel/VerticalContainer/ArrowContainer/MidArrow")
-onready var rightArrow = get_node("Panel/VerticalContainer/ArrowContainer/RightArrow")
-onready var leftLetter = get_node("Panel/VerticalContainer/LetterContainer/First")
-onready var midLetter = get_node("Panel/VerticalContainer/LetterContainer/Middle")
-onready var rightLetter = get_node("Panel/VerticalContainer/LetterContainer/Last")
+signal scoreConfirmed
+
+onready var leftArrow = get_node("VerticalContainer/ArrowContainer/LeftArrow")
+onready var midArrow = get_node("VerticalContainer/ArrowContainer/MidArrow")
+onready var rightArrow = get_node("VerticalContainer/ArrowContainer/RightArrow")
+onready var leftLetter = get_node("VerticalContainer/LetterContainer/First")
+onready var midLetter = get_node("VerticalContainer/LetterContainer/Middle")
+onready var rightLetter = get_node("VerticalContainer/LetterContainer/Last")
 
 var selectedLetter = 0
 var letterValue = 65
@@ -18,7 +20,9 @@ func _ready():
 
 
 func _input(event):
-	if Input.is_action_just_released('ship_rotate_right'):
+	if $".".visible == false:
+		pass
+	elif Input.is_action_just_released('ship_rotate_right'):
 		selectedLetter += 1
 		setArrow(selectedLetter)
 	elif Input.is_action_just_released('ship_rotate_left'):
@@ -30,6 +34,9 @@ func _input(event):
 	elif Input.is_action_just_released('ship_go_backward'):
 		letterValue -= 1
 		setLetter(letterValue, selectedLetter)
+	elif Input.is_action_just_released('ui_accept'):
+		if $VerticalContainer/LetterContainer/DoneButton.has_focus():
+			emit_signal('scoreConfirmed')
 	
 
 
@@ -59,6 +66,7 @@ func setArrow(position):
 	leftArrow.text = ' '
 	midArrow.text = ' '
 	rightArrow.text = ' '
+	$VerticalContainer/LetterContainer/DoneButton.release_focus()
 
 	match position:
 		-1: # Handle underflow
@@ -70,19 +78,21 @@ func setArrow(position):
 			midArrow.text = '^'
 		2:
 			rightArrow.text = '^'
-		3: # Handle overflow
+		3:
+			$VerticalContainer/LetterContainer/DoneButton.grab_focus()
+		4: # Handle overflow
 			leftArrow.text = '^'
 			selectedLetter = 0
 	
 	# Update Stored Letter Value
 	if selectedLetter == 0:
 		letterValue = leftLetter.text.to_ascii()[0]
-		print(letterValue)
 	elif selectedLetter == 1:
 		letterValue = midLetter.text.to_ascii()[0]
-		print(letterValue)
 	elif selectedLetter == 2:
 		letterValue = rightLetter.text.to_ascii()[0]
-		print(letterValue)
 
+
+func setScoreText(score):
+	$VerticalContainer/ScoreLabel.text = str(score)
 

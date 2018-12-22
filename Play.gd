@@ -19,10 +19,12 @@ func _ready():
 	connect("changeScreenTo", get_node("/root/Main"), "changeScreenTo")
 	# Set values
 	scoreValueLabel.text = str(0)
-	highScoreValueLabel.text = str(25000)
+	highScoreValueLabel.text = str(ScoreManager.getTopScore())
 	lifeValueLabel.text = "x3"
 	levelValueLabel.text = str(1)
 	$PauseWindow.visible = false
+	$GameOverLabel.visible = false
+	$ScoreEntry.visible = false
 
 func _process(delta):
 	# Check if paused button pressed
@@ -86,9 +88,27 @@ func increase_level():
 
 
 func game_over():
-	# Display game over message and change screen
-	##TODO High Score & Game Over
-	emit_signal("changeScreenTo", "TITLE")
+	# Display game over message
+	$GameOverLabel.visible = true
+	$GameOverLabel/Timer.start()
+	# Stop player respawn
+	levelManager.deleteShip()
+
+
+func _on_GameOverLabel_gameOverLabelExpired():
+	if ScoreManager.isNewHighScore(int(scoreValueLabel.text)):
+		$ScoreEntry.visible = true
+		$ScoreEntry.grab_focus()
+		$ScoreEntry.setScoreText(scoreValueLabel.text)
+	else:
+		emit_signal("changeScreenTo", "HIGHSCORES")
+		queue_free()
+
+
+func _on_ScoreEntry_scoreConfirmed():
+	var name = $ScoreEntry/VerticalContainer/LetterContainer/First.text + $ScoreEntry/VerticalContainer/LetterContainer/Middle.text + $ScoreEntry/VerticalContainer/LetterContainer/Last.text
+	ScoreManager.insertScore(int(scoreValueLabel.text), name)
+	emit_signal("changeScreenTo", "HIGHSCORES")
 	queue_free()
 
 
@@ -122,3 +142,5 @@ func _on_backButton_button_down():
 
 func _on_backButton_button_up():
 	Input.action_release('ship_go_backward')
+
+

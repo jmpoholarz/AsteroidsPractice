@@ -1,11 +1,19 @@
 extends Node
 
+signal changeScreenTo
+
 var sampleData = [["ZZZ", 15000], ["YYY", 14000], ["XXX", 13000], ["WWW",11500],
 	["VVV",10000], ["UUU", 8000], ["TTT", 6400], ["SSS", 4200]]
 
 func _ready():
-	populateScores(sampleData)
+	connect("changeScreenTo", get_node("/root/Main"), "changeScreenTo")
+	populateScores(ScoreManager.scoreArray)
+	$IgnoreInputTimer.start()
 
+func _process(delta):
+	if Input.is_action_just_released('ui_accept') and $IgnoreInputTimer.is_stopped():
+		emit_signal('changeScreenTo', 'TITLE')
+		queue_free()
 
 func populateScores(data):
 	for row in range(data.size()):
@@ -13,8 +21,8 @@ func populateScores(data):
 		var nameNode = "Name" + str(row)
 		var scoreNode = "Score" + str(row)
 		# Get values to insert
-		var name = data[row][0]
-		var score = data[row][1]
+		var score = data[row][0]
+		var name = data[row][1]
 		# Assign to actual nodes
 		var nameNodePath = "VBoxContainer/Grid/" + nameNode
 		var scoreNodePath = "VBoxContainer/Grid/" + scoreNode
