@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shootA.wav-2bc049614bd2de2d01ae832f652a9ccd.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/shootA.wav"
+dest_files=[ "res://.import/shootA.wav-2bc049614bd2de2d01ae832f652a9ccd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
