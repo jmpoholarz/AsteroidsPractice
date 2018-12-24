@@ -12,6 +12,9 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_released('ui_accept') and $IgnoreInputTimer.is_stopped():
+		# Play SFX
+		SoundManager.playSFX(SoundManager.ACCEPT)
+		# Go to title screen
 		emit_signal('changeScreenTo', 'TITLE')
 		queue_free()
 

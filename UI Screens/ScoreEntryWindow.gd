@@ -25,18 +25,23 @@ func _input(event):
 	elif Input.is_action_just_released('ship_rotate_right'):
 		selectedLetter += 1
 		setArrow(selectedLetter)
+		SoundManager.playSFX(SoundManager.BLIP)
 	elif Input.is_action_just_released('ship_rotate_left'):
 		selectedLetter -= 1
 		setArrow(selectedLetter)
+		SoundManager.playSFX(SoundManager.BLIP)
 	elif Input.is_action_just_released('ship_go_forward'):
 		letterValue += 1
 		setLetter(letterValue, selectedLetter)
+		SoundManager.playSFX(SoundManager.BLIP)
 	elif Input.is_action_just_released('ship_go_backward'):
 		letterValue -= 1
 		setLetter(letterValue, selectedLetter)
+		SoundManager.playSFX(SoundManager.BLIP)
 	elif Input.is_action_just_released('ui_accept'):
 		if $VerticalContainer/LetterContainer/DoneButton.has_focus():
 			emit_signal('scoreConfirmed')
+		SoundManager.playSFX(SoundManager.ACCEPT)
 	
 
 
@@ -70,8 +75,9 @@ func setArrow(position):
 
 	match position:
 		-1: # Handle underflow
-			rightArrow.text = '^'
-			selectedLetter = 2
+			#rightArrow.text = '^'
+			selectedLetter = 3
+			$VerticalContainer/LetterContainer/DoneButton.grab_focus()
 		0: 
 			leftArrow.text = '^'
 		1:

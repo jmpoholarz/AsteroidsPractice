@@ -85,6 +85,8 @@ func increase_level():
 	levelValueLabel.text = str(level)
 	# Advance level in levelManager
 	levelManager.load_level(level)
+	# Play SFX
+	SoundManager.playSFX(SoundManager.LEVELUP)
 
 
 func game_over():

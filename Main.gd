@@ -3,7 +3,8 @@ extends Node
 var screenHolder # Node managing the screens
 
 func _ready():
-	
+	# Load settings
+	SettingsNode.load_config()
 	# Start Title Screen
 	changeScreenTo("TITLE")
 	pass

@@ -43,6 +43,8 @@ func _physics_process(delta):
 	position.y += velocity.y * delta
 
 func _on_AsteroidLarge_area_shape_entered(area_id, area, area_shape, self_shape):	
+	# Play SFX
+	SoundManager.playSFX(SoundManager.EXPLOSION)
 	# Add Medium Asteroids
 	create_asteroids()
 	# Create one-shot particle emitter

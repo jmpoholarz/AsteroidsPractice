@@ -49,7 +49,7 @@ anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
 
-[node name="AsteroidLarge" type="Area2D" index="0" groups=[
+[node name="AsteroidLarge" type="Area2D" groups=[
 "asteroids",
 ]]
 

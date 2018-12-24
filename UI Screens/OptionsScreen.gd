@@ -27,11 +27,29 @@ func _input(event):
 	
 	# Ignore input if not trying to reassign
 	if inReassignMode == false:
-		if event.is_action("ui_cancel"):
-			# Save config and return to title screen
-			save_config()
-			emit_signal("changeScreenTo", "TITLE")
-			queue_free()
+		if event.is_action_pressed("ui_cancel"):
+			if $HighScoreResetConfirmation.visible == false and $ScoresResetOK.visible == false:
+				# Save config and return to title screen
+				save_config()
+				SoundManager.playSFX(SoundManager.DECLINE)
+				emit_signal("changeScreenTo", "TITLE")
+				queue_free()
+		elif $HighScoreResetConfirmation.get_ok().has_focus():
+			if event.is_action_pressed("ui_right"):
+				SoundManager.playSFX(SoundManager.BLIP)
+		elif $HighScoreResetConfirmation.get_cancel().has_focus() :
+			if event.is_action_pressed("ui_left"):
+				SoundManager.playSFX(SoundManager.BLIP)
+		elif $ScoresResetOK.has_focus():
+			pass
+		elif event.is_action_pressed("ui_up") and !$VBoxContainer/VolumeContainer/VolumeSlider.has_focus():
+			SoundManager.playSFX(SoundManager.BLIP)
+		elif event.is_action_pressed("ui_down") and !$VBoxContainer/ResetScoresButton.has_focus():
+			SoundManager.playSFX(SoundManager.BLIP)
+		elif event.is_action_pressed("ui_right") and $VBoxContainer/VolumeContainer/VolumeSlider.has_focus():
+			SoundManager.playSFX(SoundManager.BLIP)
+		elif event.is_action_pressed("ui_left") and $VBoxContainer/VolumeContainer/VolumeSlider.has_focus():
+			SoundManager.playSFX(SoundManager.BLIP)
 		return
 	# Handle reassigning
 	var scancode = OS.get_scancode_string(event.scancode)
@@ -43,14 +61,31 @@ func _input(event):
 	####save_to_config("input", actionReassigning, scancode)
 	# End reassigning
 	inReassignMode = false
+	SoundManager.playSFX(SoundManager.ACCEPT)
 
+func _on_VolumeSlider_value_changed(value):
+	SettingsNode.volume = $VBoxContainer/VolumeContainer/VolumeSlider.value
+	SoundManager.updateVolume()
 
 func _on_ResetScoresButton_pressed():
 	$HighScoreResetConfirmation.popup()
+	SoundManager.playSFX(SoundManager.ACCEPT)
 
 func _on_HighScoreResetConfirmation_confirmed():
 	ScoreManager.resetScores()
 	$ScoresResetOK.popup()
+	SoundManager.playSFX(SoundManager.ACCEPT)
+
+# doesn't seem to work?
+func _on_HighScoreResetConfirmation_modal_closed():
+	SoundManager.playSFX(SoundManager.DECLINE)
+	
+func _on_ScoresResetOK_confirmed():
+	SoundManager.playSFX(SoundManager.ACCEPT)
+
+func _on_ScoresResetOK_modal_closed():
+	SoundManager.playSFX(SoundManager.DECLINE)
+
 
 # Handle all of the Control button remaps
 func _on_ForwardButton_pressed():
@@ -79,96 +114,19 @@ func _on_PauseButton_pressed():
 	actionReassigning = "ui_pause"
 
 
-
-func create_default_config():
-	var config = ConfigFile.new()
-	# Handle Audio settings
-	config.set_value("audio", "volume", 100)
-	# Handle Keybind settings
-	config.set_value("keybinds", "ship_go_forward", KEY_UP)
-	config.set_value("keybinds", "ship_go_backward", KEY_DOWN)
-	config.set_value("keybinds", "ship_rotate_left", KEY_LEFT)
-	config.set_value("keybinds", "ship_rotate_right", KEY_RIGHT)
-	config.set_value("keybinds", "ship_shoot", KEY_Z)
-	config.set_value("keybinds", "ui_pause", KEY_P)
-	# Create the new config file
-	config.save("user://settings.cfg")
-
 func load_config():
-	# Open the config
-	var config = ConfigFile.new()
-	var error = config.load("user://settings.cfg")
-	if error != OK:
-		print("Creating settings file...")
-		create_default_config()
-		load_config()
-		return
+	SettingsNode.load_config()
 	# Read settings
 	# Volume
-	if config.has_section_key("audio", "volume"):
-		SettingsNode.volume = config.get_value("audio", "volume")
-		$VBoxContainer/VolumeContainer/VolumeSlider.value = SettingsNode.volume
+	$VBoxContainer/VolumeContainer/VolumeSlider.value = SettingsNode.volume
+	SoundManager.updateVolume()
 	# Controls
-	if config.has_section_key("keybinds", "ship_go_forward"):
-		# Erase old keybind
-		for oldEvent in InputMap.get_action_list("ship_go_forward"):
-			InputMap.action_erase_event("ship_go_forward", oldEvent)
-		# Apply new keybind
-		var event = InputEventKey.new()
-		event.scancode = config.get_value("keybinds", "ship_go_forward")
-		InputMap.action_add_event("ship_go_forward", event)
-		# Update UI
-		$VBoxContainer/GridContainer/ForwardButton.text = OS.get_scancode_string(event.scancode)
-	if config.has_section_key("keybinds", "ship_go_backward"):
-		# Erase old keybind
-		for oldEvent in InputMap.get_action_list("ship_go_backward"):
-			InputMap.action_erase_event("ship_go_backward", oldEvent)
-		# Apply new keybind
-		var event = InputEventKey.new()
-		event.scancode = config.get_value("keybinds", "ship_go_backward")
-		InputMap.action_add_event("ship_go_backward", event)
-		# Update UI
-		$VBoxContainer/GridContainer/BackButton.text = OS.get_scancode_string(event.scancode)
-	if config.has_section_key("keybinds", "ship_rotate_left"):
-		# Erase old keybind
-		for oldEvent in InputMap.get_action_list("ship_rotate_left"):
-			InputMap.action_erase_event("ship_rotate_left", oldEvent)
-		# Apply new keybind
-		var event = InputEventKey.new()
-		event.scancode = config.get_value("keybinds", "ship_rotate_left")
-		InputMap.action_add_event("ship_rotate_left", event)
-		# Update UI
-		$VBoxContainer/GridContainer/TurnCCWButton.text = OS.get_scancode_string(event.scancode)
-	if config.has_section_key("keybinds", "ship_rotate_right"):
-		# Erase old keybind
-		for oldEvent in InputMap.get_action_list("ship_rotate_right"):
-			InputMap.action_erase_event("ship_rotate_right", oldEvent)
-		# Apply new keybind
-		var event = InputEventKey.new()
-		event.scancode = config.get_value("keybinds", "ship_rotate_right")
-		InputMap.action_add_event("ship_rotate_right", event)
-		# Update UI
-		$VBoxContainer/GridContainer/TurnCWButton.text = OS.get_scancode_string(event.scancode)
-	if config.has_section_key("keybinds", "ship_shoot"):
-		# Erase old keybind
-		for oldEvent in InputMap.get_action_list("ship_shoot"):
-			InputMap.action_erase_event("ship_shoot", oldEvent)
-		# Apply new keybind
-		var event = InputEventKey.new()
-		event.scancode = config.get_value("keybinds", "ship_shoot")
-		InputMap.action_add_event("ship_shoot", event)
-		# Update UI
-		$VBoxContainer/GridContainer/ShootButton.text = OS.get_scancode_string(event.scancode)
-	if config.has_section_key("keybinds", "ui_pause"):
-		# Erase old keybind
-		for oldEvent in InputMap.get_action_list("ui_pause"):
-			InputMap.action_erase_event("ui_pause", oldEvent)
-		# Apply new keybind
-		var event = InputEventKey.new()
-		event.scancode = config.get_value("keybinds", "ui_pause")
-		InputMap.action_add_event("ui_pause", event)
-		# Update UI
-		$VBoxContainer/GridContainer/PauseButton.text = OS.get_scancode_string(event.scancode)
+	$VBoxContainer/GridContainer/ForwardButton.text = OS.get_scancode_string(InputMap.get_action_list("ship_go_forward")[0].scancode)
+	$VBoxContainer/GridContainer/BackButton.text = OS.get_scancode_string(InputMap.get_action_list("ship_go_backward")[0].scancode)
+	$VBoxContainer/GridContainer/TurnCCWButton.text = OS.get_scancode_string(InputMap.get_action_list("ship_rotate_left")[0].scancode)
+	$VBoxContainer/GridContainer/TurnCWButton.text = OS.get_scancode_string(InputMap.get_action_list("ship_rotate_right")[0].scancode)
+	$VBoxContainer/GridContainer/ShootButton.text = OS.get_scancode_string(InputMap.get_action_list("ship_shoot")[0].scancode)
+	$VBoxContainer/GridContainer/PauseButton.text = OS.get_scancode_string(InputMap.get_action_list("ui_pause")[0].scancode)
 
 
 func save_config():
@@ -176,6 +134,7 @@ func save_config():
 	var config = ConfigFile.new()
 	# Handle audio settings
 	config.set_value("audio", "volume", $VBoxContainer/VolumeContainer/VolumeSlider.value)
+	SettingsNode.volume = $VBoxContainer/VolumeContainer/VolumeSlider.value
 	# Handle keybind settings
 	var x = InputMap.get_action_list("ship_go_forward").front().scancode
 	config.set_value("keybinds", "ship_go_forward", x)
@@ -191,3 +150,12 @@ func save_config():
 	config.set_value("keybinds", "ui_pause", x)
 	# Save file
 	config.save("user://settings.cfg")
+	
+	# Tell SoundManager to update setting
+	SoundManager.updateVolume()
+
+
+
+
+
+

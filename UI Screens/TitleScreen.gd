@@ -11,9 +11,16 @@ func _ready():
 	$VBoxContainer/StartButton.grab_focus()
 	pass
 
+func _input(event):
+	if event.is_action_pressed("ui_up"):
+		SoundManager.playSFX(SoundManager.BLIP)
+	elif event.is_action_pressed("ui_down"):
+		SoundManager.playSFX(SoundManager.BLIP)
+
 
 func _on_StartButton_pressed():
-	# Change to Play Screen
+	# Change to Play Screen 
+	SoundManager.playSFX(SoundManager.ACCEPT)
 	emit_signal("changeScreenTo", "PLAY")
 	# Remove Title Screen
 	queue_free()
@@ -21,6 +28,7 @@ func _on_StartButton_pressed():
 
 func _on_OptionsButton_pressed():
 	# Change to Options Screen
+	SoundManager.playSFX(SoundManager.ACCEPT)
 	emit_signal("changeScreenTo", "OPTIONS")
 	# Remove Title Screen
 	queue_free()

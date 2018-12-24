@@ -57,6 +57,8 @@ func _process(delta):
 			bullet.velocity.x = ship_u_vec.x * BULLET_MAG
 			bullet.velocity.y = ship_u_vec.y * BULLET_MAG
 		add_child(bullet)
+		# Play SFX
+		SoundManager.playSFX(SoundManager.SHOOT)
 		
 	pass
 
@@ -97,6 +99,8 @@ func _on_Ship_area_shape_entered(area_id, area, area_shape, self_shape):
 	$Sprite.visible = false
 	# Play explosion graphic
 	add_child(Explosion.instance())
+	# Play SFX
+	SoundManager.playSFX(SoundManager.DEATH)
 	# Wait for respawn
 	$RespawnDelay.start()
 
