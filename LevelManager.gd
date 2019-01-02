@@ -1,9 +1,9 @@
 extends Node
 
-var LargeAsteroid = load('res://AsteroidLarge.tscn')
-var MediumAsteroid = load('res://AsteroidMedium.tscn')
-var SmallAsteroid = load('res://AsteroidSmall.tscn')
-var Ship = load('res://Ship.tscn')
+var LargeAsteroid = load('res://Gameplay/AsteroidLarge.tscn')
+var MediumAsteroid = load('res://Gameplay/AsteroidMedium.tscn')
+var SmallAsteroid = load('res://Gameplay/AsteroidSmall.tscn')
+var Ship = load('res://Gameplay/Ship.tscn')
 
 var player
 
@@ -12,7 +12,10 @@ var LEVELS = [
 	[1,2,0],
 	[2,2,0],
 	[3,0,0],
+	[3,2,0],
+	[2,4,4],
 	[4,0,0],
+	[1,0,12],
 	[5,0,0]
 ]
 var MAX_LEVEL = LEVELS.size()

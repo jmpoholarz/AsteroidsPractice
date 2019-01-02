@@ -30,6 +30,7 @@ func _process(delta):
 	# Check if paused button pressed
 	if Input.is_action_just_pressed('ui_pause'):
 		$PauseWindow.show()
+		SoundManager.playSFX(SoundManager.ACCEPT)
 		get_tree().paused = true
 	
 	if get_tree().get_nodes_in_group("asteroids").size() == 0:

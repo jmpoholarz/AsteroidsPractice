@@ -6,11 +6,11 @@
 [ext_resource path="res://LevelManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/ship.png" type="Texture" id=5]
 [ext_resource path="res://Assets/fonts/pcsenior8.tres" type="DynamicFont" id=6]
-[ext_resource path="res://PauseWindow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI Screens/PauseWindow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://UI Screens/GameOverLabel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI Screens/ScoreEntryWindow.tscn" type="PackedScene" id=9]
 
-[node name="Play" type="Node"]
+[node name="Play" type="Node" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]

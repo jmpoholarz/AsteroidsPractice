@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/theme.tres" type="Theme" id=1]
-[ext_resource path="res://GameOverLabel.gd" type="Script" id=2]
+[ext_resource path="res://UI Screens/GameOverLabel.gd" type="Script" id=2]
+
 
 [node name="GameOverLabel" type="Label" index="0"]
 

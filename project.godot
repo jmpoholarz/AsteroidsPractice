@@ -16,7 +16,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-SettingsNode="*res://SettingsNode.gd"
+SettingsNode="*res://Singletons/SettingsNode.tscn"
 ScoreManager="*res://Singletons/ScoreManager.gd"
 SoundManager="*res://Singletons/SoundManager.tscn"
 
